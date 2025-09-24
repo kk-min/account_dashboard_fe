@@ -1,0 +1,29 @@
+:root {
+  --color-highlight: #2e67f8;
+  --color-error: #d92323;
+  --background: #fffbf7;
+}
+
+@font-face {
+  font-family: "Bookerly";
+  font-style: normal;
+  src: url("/fonts/Bookerly.ttf") format("truetype");
+}
+
+* {
+  font-family: "Bookerly", serif;
+}
+
+body {
+  background: var(--background);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
