@@ -24,3 +24,16 @@ export interface GetAccountResponse {
   account_id: number;
   balance: string;
 }
+
+// Execute Transfer API (POST)
+export interface ExecuteTransferRequest {
+  source_account_id: number;
+  destination_account_id: number;
+  amount: string;
+}
+
+export interface ExecuteTransferResponse {
+  source_account_id: number;
+  destination_account_id: number;
+  amount: string;
+}
