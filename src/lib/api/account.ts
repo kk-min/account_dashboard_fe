@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import type {
   APIResponse,
   CreateAccountRequest,
@@ -6,14 +9,19 @@ import type {
   GetAccountResponse,
 } from "./types";
 
+const BASE_URL = process.env.API_BASE_URL || "";
+
 export async function createAccount(params: CreateAccountRequest) {
-  const res: APIResponse<CreateAccountResponse> = await fetch(`/api/accounts`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const res: APIResponse<CreateAccountResponse> = await fetch(
+    `${BASE_URL}/accounts`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
     },
-    body: JSON.stringify(params),
-  }).then((res) => {
+  ).then((res) => {
     if (!res.ok) {
       return {
         error: `Error: ${res.status} ${res.statusText}`,
@@ -23,12 +31,16 @@ export async function createAccount(params: CreateAccountRequest) {
     }
     return res.json();
   });
-  return res;
+  return {
+    data: res,
+    error: res.error,
+    status: res.status,
+  };
 }
 
 export async function getAccountBalance(params: GetAccountRequest) {
   const res: APIResponse<GetAccountResponse> = await fetch(
-    `/api/accounts/${params.account_id}/balance`,
+    `${BASE_URL}/accounts/${params.account_id}/balance`,
     {
       method: "GET",
       headers: {
@@ -45,5 +57,9 @@ export async function getAccountBalance(params: GetAccountRequest) {
     }
     return res.json();
   });
-  return res;
+  return {
+    data: res,
+    error: res.error,
+    status: res.status,
+  };
 }
