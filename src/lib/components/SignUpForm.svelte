@@ -52,7 +52,7 @@
 			/>
 		</div>
 	</div>
-	<button class="signup" onclick={signup}>Login</button>
+	<button class="signup" onclick={signup}>Register</button>
 	{#if showError}
 		<div class="error-message">
 			{errorMessage}
